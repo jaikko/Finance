@@ -23,7 +23,6 @@ total_final = 0
 best_gain = 0
 names = []
 for i in li:
-   
     total = 0
     gain = 0
     names.clear()
