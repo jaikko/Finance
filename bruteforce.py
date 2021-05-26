@@ -1,9 +1,9 @@
-import csv
-from itertools import combinations,chain
+import csv, time
+from itertools import combinations, chain
 
-
+start_time = time.time()
 liste = []
-with open('dataset.csv', newline='') as csvfile:
+with open('data/dataset.csv', newline='') as csvfile:
     spamreader = csv.reader(csvfile)
     next(csvfile)
     for row in spamreader:
@@ -13,21 +13,20 @@ with open('dataset.csv', newline='') as csvfile:
         liste.append(dict)
 
 
-def subsets(iterable):
-    s = list(iterable)
-    return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
+def subsets(liste):
+    return chain.from_iterable(combinations(liste, r) for r in range(len(liste)+1))
 
-li = subsets(liste)
+combi = subsets(liste)
 
 total_final = 0
 best_gain = 0
 names = []
-for i in li:
+for i in combi:
     total = 0
     gain = 0
     names.clear()
     for elem in i:
-        if total + elem['price'] <= 500: 
+        if total + elem['price'] <= 500:
            total += float(elem['price'])
            gain += float(elem['profit'])
            names.append(elem['name'])
@@ -35,7 +34,7 @@ for i in li:
     if gain > best_gain:
         total_final = total
         best_gain = gain
-            
-print(names)
-print(str(best_gain))
-print(str(total_final))
+
+print("Vous devez acheter des actions chez " + ', '.join(names) + '.')
+print("Avec un investissement de " + str(round(total_final, 2)) + " euros" + ',vous gagnerez ' + str(round(best_gain, 2)) + " euros")          
+print("--- %s seconds ---" % (time.time() - start_time))
