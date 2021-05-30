@@ -19,4 +19,4 @@ Il est nécessaire d'avoir Python 3.9 et Git installé sur le PC.
 
 Les fichiers csv doivent se trouvent dans le dossier "data".
 Dans cette console, exécuter les programmes aux choix (bruteforce.py, optimized.py) avec ```py nomdufichier.py```,
-par exemple, ```py bruteforce.py```
+par exemple:  ```py bruteforce.py```
